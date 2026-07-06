@@ -7,17 +7,32 @@
 }
 
 body {
-    /* Romantic Gradient Background */
+    /* Safe fallback color agar gradient load na ho */
+    background-color: #701023; 
+    
+    /* iOS Safari aur baaki sabhi browsers ke liye full gradient support */
+    background: -webkit-linear-gradient(135deg, #701023 0%, #c4294d 100%);
     background: linear-gradient(135deg, #701023 0%, #c4294d 100%);
+    
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    overflow: hidden; /* Faltu scroll roko */
+    
+    /* iPhone par layout fix karne ke liye fixed height aur width */
+    width: 100vw;
+    height: 100vh;
+    height: -webkit-fill-available; /* iPhone specific height fix */
+    
+    overflow: hidden; 
     position: relative;
 }
 
+/* HTML tag ko bhi background color dena zaroori hai taaki iPhone background white na kare */
+html {
+    background-color: #701023;
+    height: -webkit-fill-available;
+}
 /* FLOATING HEARTS ANIMATION */
 .hearts-bg {
     position: absolute;
