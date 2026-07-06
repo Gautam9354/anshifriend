@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="assets/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- FLOATING HEARTS BACKGROUND -->
+    <div class="hearts-bg">
+        <div class="heart">❤️</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+    </div>
+
+    <!-- SECTION 1: PASSCODE LOCK SCREEN -->
+    <div id="lock-screen" class="screen">
+        <div class="lock-container">
+            <div class="image-frame">
+                <!-- Heart shape frame ke liye CSS use karenge -->
+                <img src="assets/penguin.jpg" alt="Cute Penguin" id="profile-pic">
+            </div>
+            
+            <h2>Enter a passcode</h2>
+            
+            <div class="passcode-display">
+                <span class="dot" id="dot-1"></span>
+                <span class="dot" id="dot-2"></span>
+                <span class="dot" id="dot-3"></span>
+                <span class="dot" id="dot-4"></span>
+            </div>
+
+            <div class="keypad">
+                <button class="key" onclick="pressKey('1')">1</button>
+                <button class="key" onclick="pressKey('2')">2</button>
+                <button class="key" onclick="pressKey('3')">3</button>
+                <button class="key" onclick="pressKey('4')">4</button>
+                <button class="key" onclick="pressKey('5')">5</button>
+                <button class="key" onclick="pressKey('6')">6</button>
+                <button class="key" onclick="pressKey('7')">7</button>
+                <button class="key" onclick="pressKey('8')">8</button>
+                <button class="key" onclick="pressKey('9')">9</button>
+                <button class="key" onclick="clearPasscode()">*</button>
+                <button class="key" onclick="pressKey('0')">0</button>
+                <button class="key" onclick="clearPasscode()">#</button>
+            </div>
+            <p id="error-message" style="color: #ffb3b3; display: none; margin-top: 15px;">Wrong Passcode! Try again.</p>
+        </div>
+    </div>
+
+    <!-- SECTION 2: GIFTS SCREEN -->
+    <div id="main-content" class="screen hidden">
+        <div class="gifts-container">
+            <h1 class="title-text">CLICK ON GIFTS TO OPEN</h1>
+            
+            <div class="gifts-row">
+                <div class="gift-box" onclick="openGift(1)">
+                    <img src="assets/gift.png" alt="Gift 1">
+                </div>
+                <div class="gift-box" onclick="openGift(2)">
+                    <img src="assets/gift.png" alt="Gift 2">
+                </div>
+                <div class="gift-box" onclick="openGift(3)">
+                    <img src="assets/gift.png" alt="Gift 3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: POLAROID / MESSAGE POPUPS -->
+    <div id="popup-screen" class="screen hidden">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">X</button>
+            <div id="popup-message">
+                <!-- Messages JS se aayenge -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
