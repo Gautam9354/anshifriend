@@ -34,38 +34,40 @@ html {
     height: -webkit-fill-available;
 }
 /* FLOATING HEARTS ANIMATION */
+/* FLOATING HEARTS ANIMATION */
 .hearts-bg {
-    position: absolute;
+    position: fixed; /* absolute ki jagah fixed taaki screen ke upar hi rahe */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Background me piche rakhne ke liye */
+    z-index: 0; /* Box ke piche rahega par background ke upar */
     overflow: hidden;
+    pointer-events: none; /* Isse aap background ke piche ke buttons par click kar paoge */
 }
 
 .heart {
     position: absolute;
-    bottom: -10%;
-    font-size: 24px;
-    animation: floatUp 8s infinite linear;
-    opacity: 0.7;
+    bottom: -50px; /* Screen ke bilkul niche se start hoga */
+    left: var(--left);
+    font-size: var(--size);
+    animation: floatUp 7s infinite linear;
+    animation-delay: var(--delay);
+    opacity: 0.6;
+    will-change: transform; /* iPhone ke browser ko performance smooth rakhne ke liye bolta hai */
 }
 
-/* Har heart ko alag speed aur position dena */
-.heart:nth-child(1) { left: 10%; animation-duration: 7s; font-size: 30px; }
-.heart:nth-child(2) { left: 30%; animation-duration: 9s; animation-delay: 2s; }
-.heart:nth-child(3) { left: 50%; animation-duration: 6s; font-size: 35px; }
-.heart:nth-child(4) { left: 70%; animation-duration: 8s; animation-delay: 4s; }
-.heart:nth-child(5) { left: 85%; animation-duration: 10s; font-size: 20px; }
-.heart:nth-child(6) { left: 20%; animation-duration: 11s; animation-delay: 5s; }
-
-/* Hearts ko upar udane ka jadoo (Keyframes) */
+/* Hearts ko upar udane ka aur responsive rakhne ka jadoo */
 @keyframes floatUp {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.3); /* vh use kiya taaki har phone screen ke upar tak jaye */
+        opacity: 0;
+    }
 }
-
 /* COMMON SCREEN STYLES */
 .screen {
     width: 100%;
