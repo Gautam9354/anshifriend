@@ -50,18 +50,21 @@ function checkPasscode() {
     }
 }
 
-// --- GIFTS & POPUP LOGIC ---
+// --- GIFTS & POPUP LOGIC WITH LOVE TEMPLATE ---
 function openGift(giftNumber) {
     const popupScreen = document.getElementById("popup-screen");
-    const popupMessage = document.getElementById("popup-message");
+    const headerTitle = document.getElementById("popup-header-title");
+    const messageText = document.getElementById("popup-message-text");
     
-    // Yahan aap apne messages change kar sakte hain!
     if (giftNumber === 1) {
-        popupMessage.innerHTML = "<h3>Happy Birthday! 🎂</h3><br><p>You are the most special person in my life. I love you! ❤️</p>";
+        headerTitle.innerHTML = "<h3>Our Beautiful Journey 🧸</h3>";
+        messageText.innerHTML = "Happy Birthday my love! 🎂<br><br>Yahan aap apni pehli lambi baat likh sakte hain. Jaise ki jab aap pehli baar mile the toh kaisa laga tha, aur kaise unhone aapki life ko badal diya. You are my absolute favorite person! ❤️";
     } else if (giftNumber === 2) {
-        popupMessage.innerHTML = "<h3>My Everything 💖</h3><br><p>Thank you for always being there for me. You make me smile everyday!</p>";
+        headerTitle.innerHTML = "<h3>Reasons I Love You 💖</h3>";
+        messageText.innerHTML = "Thank you for always being my safe place. ✨<br><br>Yahan aap dusri pyari baat likh sakte hain. Aapka gussa hona, aapka muskurana, aapka mujhe jhelna... sab kuch bohot special hai mere liye. Har din aapke sath ek nayi memory jaisa hai.";
     } else if (giftNumber === 3) {
-        popupMessage.innerHTML = "<h3>Forever & Always 💕</h3><br><p>I promise to annoy you for the rest of your life! 😘</p>";
+        headerTitle.innerHTML = "<h3>My Forever Promise ♾️</h3>";
+        messageText.innerHTML = "I promise to annoy you for the rest of your life! 😘<br><br>Yahan aapka aakhri special message aayega. No matter kya situation ho, main hamesha aapke sath khada rahunga. Happy Birthday once again, my whole world! 💕";
     }
 
     popupScreen.classList.remove("hidden");
