@@ -1,5 +1,5 @@
 let enteredPasscode = "";
-const correctPasscode = "1234"; // Aap yahan apna passcode change kar sakte hain
+const correctPasscode = "1234"; // Aapka passcode
 
 // --- PASSCODE LOGIC ---
 function pressKey(num) {
@@ -8,7 +8,6 @@ function pressKey(num) {
         updateDots();
     }
 
-    // Jab 4 numbers dab jayein, toh 0.3 seconds baad check karo
     if (enteredPasscode.length === 4) {
         setTimeout(checkPasscode, 300); 
     }
@@ -17,10 +16,12 @@ function pressKey(num) {
 function updateDots() {
     for (let i = 1; i <= 4; i++) {
         const dot = document.getElementById(`dot-${i}`);
-        if (i <= enteredPasscode.length) {
-            dot.classList.add("active");
-        } else {
-            dot.classList.remove("active");
+        if (dot) {
+            if (i <= enteredPasscode.length) {
+                dot.classList.add("active");
+            } else {
+                dot.classList.remove("active");
+            }
         }
     }
 }
@@ -28,34 +29,41 @@ function updateDots() {
 function clearPasscode() {
     enteredPasscode = "";
     updateDots();
-    document.getElementById("error-message").style.display = "none";
 }
 
 function checkPasscode() {
     if (enteredPasscode === correctPasscode) {
-        // Passcode Sahi Hai -> Lock screen chupao aur Gifts screen dikhao
+        // Lock screen ko chupao aur Main content dikhao
         document.getElementById("lock-screen").classList.add("hidden");
         document.getElementById("main-content").classList.remove("hidden");
         
-        // Background music play karo
-        const music = document.getElementById("bg-music");
-        if(music) {
-            music.play().catch(error => console.log("Audio autoplay blocked by browser."));
-        }
+        // Error message agar dikh raha ho toh chupao
+        document.getElementById("error-message").style.display = "none";
         
+        // Music play karne ki koshish karo
+        const music = document.getElementById("bg-music");
+        if (music) {
+            music.play().catch(err => console.log("Music play blocked by browser settings."));
+        }
     } else {
-        // Passcode Galat Hai
         document.getElementById("error-message").style.display = "block";
         clearPasscode();
     }
 }
 
-// --- GIFTS & POPUP LOGIC WITH LOVE TEMPLATE ---
+// --- GIFTS & POPUP LOGIC ---
 function openGift(giftNumber) {
     const popupScreen = document.getElementById("popup-screen");
     const headerTitle = document.getElementById("popup-header-title");
     const messageText = document.getElementById("popup-message-text");
     
+    // Check karega ki saare elements HTML me hain ya nahi
+    if (!popupScreen || !headerTitle || !messageText) {
+        console.error("HTML elements missing! Please check index.html IDs.");
+        return;
+    }
+
+    // Gift ke hisaab se content badlega
     if (giftNumber === 1) {
         headerTitle.innerHTML = "<h3>Our Beautiful Journey 🧸</h3>";
         messageText.innerHTML = "Happy Birthday my love! 🎂<br><br>Yahan aap apni pehli lambi baat likh sakte hain. Jaise ki jab aap pehli baar mile the toh kaisa laga tha, aur kaise unhone aapki life ko badal diya. You are my absolute favorite person! ❤️";
@@ -67,9 +75,13 @@ function openGift(giftNumber) {
         messageText.innerHTML = "I promise to annoy you for the rest of your life! 😘<br><br>Yahan aapka aakhri special message aayega. No matter kya situation ho, main hamesha aapke sath khada rahunga. Happy Birthday once again, my whole world! 💕";
     }
 
+    // Popup ko screen par dikhao
     popupScreen.classList.remove("hidden");
 }
 
 function closePopup() {
-    document.getElementById("popup-screen").classList.add("hidden");
+    const popupScreen = document.getElementById("popup-screen");
+    if (popupScreen) {
+        popupScreen.classList.add("hidden");
+    }
 }
