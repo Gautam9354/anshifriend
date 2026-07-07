@@ -76,12 +76,38 @@
         </div>
     </div>
 
-    <!-- SECTION 3: POLAROID / MESSAGE POPUPS -->
+  <!-- SECTION 3: LOVE TEMPLATE & MEMORIES POPUP -->
     <div id="popup-screen" class="screen hidden">
-        <div class="popup-content">
-            <button class="close-btn" onclick="closePopup()">X</button>
-            <div id="popup-message">
-                <!-- Messages JS se aayenge -->
+        <div class="love-template-box">
+            <!-- Close Button -->
+            <button class="close-btn" onclick="closePopup()">❤️ Close</button>
+            
+            <!-- Message Header -->
+            <div id="popup-header-title"></div>
+
+            <!-- PHOTOS GRID / MEMORIES SECTION -->
+            <div class="memories-gallery">
+                <div class="polaroid">
+                    <img src="assets/photo1.jpg" alt="Memory 1">
+                    <p class="caption">Our First Date 📅</p>
+                </div>
+                <div class="polaroid">
+                    <img src="assets/photo2.jpg" alt="Memory 2">
+                    <p class="caption">Making Memories 💖</p>
+                </div>
+                <div class="polaroid">
+                    <img src="assets/photo3.jpg" alt="Memory 3">
+                    <p class="caption">Your Beautiful Smile 😊</p>
+                </div>
+                <div class="polaroid">
+                    <img src="assets/photo4.jpg" alt="Memory 4">
+                    <p class="caption">Together Forever ♾️</p>
+                </div>
+            </div>
+
+            <!-- SCROLLING LOVE LETTER -->
+            <div class="love-letter">
+                <div id="popup-message-text"></div>
             </div>
         </div>
     </div>
