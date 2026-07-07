@@ -250,3 +250,89 @@ h2 {
     .gifts-row { flex-wrap: wrap; gap: 15px; }
     .gift-box img { width: 70px; }
 }
+/* UPGRADED LOVE TEMPLATE BOX */
+.love-template-box {
+    background: rgba(255, 240, 243, 0.95); /* Creamy white/pinkish background */
+    color: #4a0e17; /* Dark maroon text for readability */
+    padding: 25px 15px;
+    border-radius: 25px;
+    width: 92%;
+    max-width: 400px;
+    height: 80vh; /* Phone ki screen ke hisaab se 80% height */
+    overflow-y: auto; /* Agar content zyada ho toh scroll ho jaye */
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    border: 3px solid #ffccd5;
+}
+
+.close-btn {
+    position: sticky; /* Taaki scroll karne par bhi close button upar hi rahe */
+    top: 0;
+    float: right;
+    background: #c4294d;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+#popup-header-title h3 {
+    font-size: 1.6rem;
+    color: #c4294d;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif;
+}
+
+/* MEMORIES GALLERY (POLAROID GRID) */
+.memories-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns me photos dikhengi */
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.polaroid {
+    background: white;
+    padding: 8px;
+    padding-bottom: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    transform: rotate(calc(var(--r, 0deg))); /* Thoda random rotation effect */
+}
+
+/* Photos ko realistic look dene ke liye thoda tede-mede angles */
+.polaroid:nth-child(odd) { --r: -3deg; }
+.polaroid:nth-child(even) { --r: 3deg; }
+
+.polaroid img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+.caption {
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: 8px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #555;
+}
+
+/* LOVE LETTER TEXT SECTION */
+.love-letter {
+    background: #fff5f6;
+    padding: 15px;
+    border-radius: 15px;
+    border-left: 4px solid #c4294d;
+    text-align: left;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-family: 'Georgia', serif;
+}
