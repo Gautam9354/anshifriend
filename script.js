@@ -85,3 +85,23 @@ function closePopup() {
         popupScreen.classList.add("hidden");
     }
 }
+// --- AUTO-TYPING EFFECT FOR GIFT PAGE ---
+document.addEventListener("DOMContentLoaded", () => {
+    const textElement = document.querySelector(".typing-text");
+    if (textElement) {
+        const txt = textElement.innerHTML;
+        textElement.innerHTML = ""; // Pehle text khali karo
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < txt.length) {
+                // Agar HTML tag jaise <br> ya 🏠 emojis hain toh unhe handle karega
+                textElement.innerHTML += txt.charAt(i);
+                i++;
+                setTimeout(typeWriter, 40); // Har letter 40ms ke gap par type hoga
+            }
+        }
+        // Thoda sa pause lekar typing shuru karo
+        setTimeout(typeWriter, 500);
+    }
+});
