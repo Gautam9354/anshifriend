@@ -445,3 +445,179 @@ h2 {
         opacity: 1;
     }
 }
+/* -------------------------------------
+   AESTHETIC SCRAPBOOK & VINTAGE DESIGN
+--------------------------------------- */
+.aesthetic-page {
+    background: #a22c38 !important; /* Deep red/burgundy background like screenshot */
+    color: white !important;
+    overflow-x: hidden;
+    overflow-y: auto !important;
+}
+
+.scrapbook-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+/* SECTION 1: HANGING POLAROIDS */
+.hanging-section {
+    position: relative;
+    padding-top: 40px;
+    margin-bottom: 50px;
+}
+
+.string-line {
+    width: 110%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    position: absolute;
+    top: 30px;
+    left: -5%;
+    border-radius: 50%; /* Curved line look */
+}
+
+.polaroid-string {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    overflow-x: auto; /* Chote phones par horizontally scroll ho sake */
+    padding: 10px;
+    scroll-sidebar-margin: 10px;
+}
+
+.hanging-polaroid {
+    background: white;
+    padding: 8px 8px 20px 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    width: 110px;
+    flex-shrink: 0;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.hanging-polaroid img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+.clip {
+    position: absolute;
+    top: -15px;
+    left: 42%;
+    font-size: 16px;
+    z-index: 5;
+}
+
+/* Tede-mede Angles */
+.p-rot-left { transform: rotate(-5deg); }
+.p-rot-right { transform: rotate(6deg); }
+.p-rot-straight { transform: rotate(-2deg); }
+
+/* Cloud Effect Bottom */
+.cloud-bottom {
+    background: #fff;
+    color: #4a0e17;
+    border-radius: 50px 50px 0 0;
+    padding: 25px 15px;
+    margin-top: 20px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+.cloud-text {
+    font-family: 'Georgia', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    text-align: center;
+}
+
+/* SECTION 2: VINTAGE SCALLOP CARD & CAMERA */
+.message-section-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.scallop-card {
+    background: #fffdf2; /* Cream/Vintage Paper color */
+    color: #2b050a;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    /* Scallop jaisa decorative border mimic karne ke liye dashed lines */
+    border: 4px dashed #e6dcb8; 
+}
+
+.love-title {
+    font-family: 'Georgia', serif;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #a22c38;
+}
+
+/* TYPING ANIMATION */
+.typing-container {
+    width: 100%;
+}
+
+.typing-text {
+    font-family: 'Courier New', Courier, monospace; /* Vintage Typewriter feel */
+    font-size: 1rem;
+    line-height: 1.5;
+    white-space: normal;
+    overflow: hidden;
+    border-right: 2px solid #a22c38; /* Typing cursor */
+    animation: typingCursor 0.8s step-end infinite;
+}
+
+@keyframes typingCursor {
+    from, to { border-color: transparent }
+    50% { border-color: #a22c38; }
+}
+
+/* CAMERA FRAME */
+.camera-frame-box {
+    background: #4a0e17; /* Dark camera body casing */
+    padding: 12px;
+    border-radius: 15px;
+    width: 180px;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.camera-screen {
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 220px;
+}
+
+.camera-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.camera-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 8px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* RESPONSIVE MOBILE FIXES */
+@media (max-width: 380px) {
+    .cloud-text { font-size: 1.1rem; }
+    .love-title { font-size: 1.2rem; }
+    .typing-text { font-size: 0.9rem; }
+}
