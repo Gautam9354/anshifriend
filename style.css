@@ -446,158 +446,162 @@ h2 {
     }
 }
 /* -------------------------------------
-   AESTHETIC SCRAPBOOK & VINTAGE DESIGN
+   AESTHETIC SCRAPBOOK & VINTAGE DESIGN (MOBILE OPTIMIZED)
 --------------------------------------- */
 .aesthetic-page {
-    background: #a22c38 !important; /* Deep red/burgundy background like screenshot */
+    background: #a22c38 !important; 
     color: white !important;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     overflow-y: auto !important;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
 .scrapbook-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 420px; /* Mobile layout standard width */
     margin: 0 auto;
-    padding: 20px 10px;
+    padding: 15px 10px 40px 10px;
+    box-sizing: border-box;
+}
+
+.back-btn {
+    background: #4a0e17;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
 }
 
 /* SECTION 1: HANGING POLAROIDS */
 .hanging-section {
     position: relative;
-    padding-top: 40px;
-    margin-bottom: 50px;
+    padding-top: 25px;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
 .string-line {
-    width: 110%;
+    width: 100%;
     height: 2px;
     background: rgba(255, 255, 255, 0.4);
     position: absolute;
-    top: 30px;
-    left: -5%;
-    border-radius: 50%; /* Curved line look */
+    top: 20px;
+    left: 0;
 }
 
 .polaroid-string {
     display: flex;
-    justify-content: center;
-    gap: 12px;
-    overflow-x: auto; /* Chote phones par horizontally scroll ho sake */
-    padding: 10px;
-    scroll-sidebar-margin: 10px;
+    justify-content: space-evenly; /* Teeno photos screen me evenly distribute hongi */
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+    padding: 10px 0;
 }
 
 .hanging-polaroid {
     background: white;
-    padding: 8px 8px 20px 8px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    width: 110px;
+    padding: 5px 5px 12px 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 30%; /* Automatic response based on mobile width */
+    max-width: 110px;
     flex-shrink: 0;
     position: relative;
-    transition: transform 0.3s;
 }
 
 .hanging-polaroid img {
     width: 100%;
-    height: 100px;
+    height: 75px; /* Mobile friendly square look */
     object-fit: cover;
 }
 
 .clip {
     position: absolute;
-    top: -15px;
-    left: 42%;
-    font-size: 16px;
+    top: -12px;
+    left: 38%;
+    font-size: 12px;
     z-index: 5;
 }
 
-/* Tede-mede Angles */
-.p-rot-left { transform: rotate(-5deg); }
-.p-rot-right { transform: rotate(6deg); }
-.p-rot-straight { transform: rotate(-2deg); }
+.p-rot-left { transform: rotate(-4deg); }
+.p-rot-right { transform: rotate(5deg); }
+.p-rot-straight { transform: rotate(-1deg); }
 
-/* Cloud Effect Bottom */
+/* Cloud Effect */
 .cloud-bottom {
     background: #fff;
     color: #4a0e17;
-    border-radius: 50px 50px 0 0;
-    padding: 25px 15px;
-    margin-top: 20px;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+    border-radius: 30px 30px 15px 15px;
+    padding: 15px 10px;
+    margin-top: 15px;
+    box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
 }
 
 .cloud-text {
     font-family: 'Georgia', serif;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-style: italic;
     text-align: center;
 }
 
-/* SECTION 2: VINTAGE SCALLOP CARD & CAMERA */
+/* SECTION 2: MESSAGES & CAMERA */
 .message-section-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
     align-items: center;
-    margin-top: 20px;
-    padding: 0 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .scallop-card {
-    background: #fffdf2; /* Cream/Vintage Paper color */
+    background: #fffdf2; 
     color: #2b050a;
-    padding: 20px;
-    border-radius: 20px;
-    position: relative;
+    padding: 15px;
+    border-radius: 15px;
     width: 100%;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    /* Scallop jaisa decorative border mimic karne ke liye dashed lines */
-    border: 4px dashed #e6dcb8; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border: 3px dashed #e6dcb8; 
+    box-sizing: border-box;
 }
 
 .love-title {
     font-family: 'Georgia', serif;
-    font-size: 1.4rem;
-    margin-bottom: 15px;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
     color: #a22c38;
 }
 
-/* TYPING ANIMATION */
 .typing-container {
     width: 100%;
 }
 
 .typing-text {
-    font-family: 'Courier New', Courier, monospace; /* Vintage Typewriter feel */
-    font-size: 1rem;
-    line-height: 1.5;
-    white-space: normal;
-    overflow: hidden;
-    border-right: 2px solid #a22c38; /* Typing cursor */
-    animation: typingCursor 0.8s step-end infinite;
-}
-
-@keyframes typingCursor {
-    from, to { border-color: transparent }
-    50% { border-color: #a22c38; }
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-wrap: break-word; /* Force text to stay in bounds */
 }
 
 /* CAMERA FRAME */
 .camera-frame-box {
-    background: #4a0e17; /* Dark camera body casing */
-    padding: 12px;
-    border-radius: 15px;
-    width: 180px;
-    border: 4px solid #fff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    background: #4a0e17; 
+    padding: 10px;
+    border-radius: 12px;
+    width: 150px; /* Reduced for small displays */
+    border: 3px solid #fff;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
 }
 
 .camera-screen {
     background: #000;
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
-    height: 220px;
+    height: 180px;
 }
 
 .camera-screen img {
@@ -609,15 +613,18 @@ h2 {
 .camera-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-top: 8px;
-    font-size: 10px;
+    gap: 10px;
+    margin-top: 6px;
+    font-size: 8px;
     color: rgba(255, 255, 255, 0.5);
 }
 
-/* RESPONSIVE MOBILE FIXES */
-@media (max-width: 380px) {
-    .cloud-text { font-size: 1.1rem; }
-    .love-title { font-size: 1.2rem; }
-    .typing-text { font-size: 0.9rem; }
+/* EXTRA SMALL SCREEN FIX (iPhones smaller than iPhone 11) */
+@media (max-width: 360px) {
+    .hanging-polaroid img { height: 60px; }
+    .cloud-text { font-size: 0.95rem; }
+    .love-title { font-size: 1.1rem; }
+    .typing-text { font-size: 0.85rem; }
+    .camera-frame-box { width: 130px; }
+    .camera-screen { height: 150px; }
 }
