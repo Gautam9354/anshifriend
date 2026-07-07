@@ -7,38 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background Music -->
     <audio id="bg-music" loop>
         <source src="assets/music.mp3" type="audio/mpeg">
     </audio>
 
-   <!-- FLOATING HEARTS BACKGROUND -->
     <div class="hearts-bg">
         <div class="heart" style="--left: 10%; --delay: 0s; --size: 30px;">❤️</div>
-        <div class="heart" style="--left: 30%; --delay: 2s; --size: 24px;">💖</div>
+        <div class="heart" style="--left: 30%; --delay: 2s; --size: 24px;">🎀</div>
         <div class="heart" style="--left: 50%; --delay: 4s; --size: 35px;">💕</div>
-        <div class="heart" style="--left: 70%; --delay: 1s; --size: 26px;">❤️</div>
+        <div class="heart" style="--left: 70%; --delay: 1s; --size: 26px;">🧸</div>
         <div class="heart" style="--left: 85%; --delay: 5s; --size: 20px;">💖</div>
-        <div class="heart" style="--left: 20%; --delay: 3s; --size: 28px;">💕</div>
     </div>
 
     <!-- SECTION 1: PASSCODE LOCK SCREEN -->
     <div id="lock-screen" class="screen">
         <div class="lock-container">
             <div class="image-frame">
-                <!-- Heart shape frame ke liye CSS use karenge -->
-                <img src="penguin.png" alt="Cute Penguin" id="profile-pic">
+                <img src="assets/penguin.jpg" alt="Cute Penguin" id="profile-pic">
             </div>
-            
             <h2>Enter a passcode</h2>
-            
             <div class="passcode-display">
                 <span class="dot" id="dot-1"></span>
                 <span class="dot" id="dot-2"></span>
                 <span class="dot" id="dot-3"></span>
                 <span class="dot" id="dot-4"></span>
             </div>
-
             <div class="keypad">
                 <button class="key" onclick="pressKey('1')">1</button>
                 <button class="key" onclick="pressKey('2')">2</button>
@@ -60,54 +53,18 @@
     <!-- SECTION 2: GIFTS SCREEN -->
     <div id="main-content" class="screen hidden">
         <div class="gifts-container">
-            <h1 class="title-text">CLICK ON GIFTS TO OPEN</h1>
-            
+            <h1 class="title-text">CLICK ON GIFTS TO OPEN 🎀</h1>
             <div class="gifts-row">
-                <div class="gift-box" onclick="openGift(1)">
+                <!-- Ab ye seedha naye page par bhejenge -->
+                <div class="gift-box" onclick="location.href='gift1.html'">
                     <img src="assets/gift.png" alt="Gift 1">
                 </div>
-                <div class="gift-box" onclick="openGift(2)">
+                <div class="gift-box" onclick="location.href='gift2.html'">
                     <img src="assets/gift.png" alt="Gift 2">
                 </div>
-                <div class="gift-box" onclick="openGift(3)">
+                <div class="gift-box" onclick="location.href='gift3.html'">
                     <img src="assets/gift.png" alt="Gift 3">
                 </div>
-            </div>
-        </div>
-    </div>
-
-  <!-- SECTION 3: LOVE TEMPLATE & MEMORIES POPUP -->
-    <div id="popup-screen" class="screen hidden">
-        <div class="love-template-box">
-            <!-- Close Button -->
-            <button class="close-btn" onclick="closePopup()">❤️ Close</button>
-            
-            <!-- Message Header -->
-            <div id="popup-header-title"></div>
-
-            <!-- PHOTOS GRID / MEMORIES SECTION -->
-            <div class="memories-gallery">
-                <div class="polaroid">
-                    <img src="assets/photo1.jpg" alt="Memory 1">
-                    <p class="caption">Our First Date 📅</p>
-                </div>
-                <div class="polaroid">
-                    <img src="assets/photo2.jpg" alt="Memory 2">
-                    <p class="caption">Making Memories 💖</p>
-                </div>
-                <div class="polaroid">
-                    <img src="assets/photo3.jpg" alt="Memory 3">
-                    <p class="caption">Your Beautiful Smile 😊</p>
-                </div>
-                <div class="polaroid">
-                    <img src="assets/photo4.jpg" alt="Memory 4">
-                    <p class="caption">Together Forever ♾️</p>
-                </div>
-            </div>
-
-            <!-- SCROLLING LOVE LETTER -->
-            <div class="love-letter">
-                <div id="popup-message-text"></div>
             </div>
         </div>
     </div>
