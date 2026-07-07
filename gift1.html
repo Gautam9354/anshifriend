@@ -3,42 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Memories 🧸</title>
+    <title>Moments & Memories 🎀</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="love-page">
+<body class="aesthetic-page">
     
-    <!-- Floating Pookie Emojis -->
-    <div class="hearts-bg">
-        <div class="heart" style="--left: 15%; --delay: 0s; --size: 30px;">🧸</div>
-        <div class="heart" style="--left: 45%; --delay: 2s; --size: 25px;">🎀</div>
-        <div class="heart" style="--left: 75%; --delay: 1s; --size: 35px;">🌸</div>
-    </div>
-
-    <div class="full-template-container">
+    <div class="scrapbook-container">
         <button class="back-btn" onclick="location.href='index.html'">◀ Back</button>
-        
-        <h1 class="love-heading">Our Beautiful Journey 🎀</h1>
 
-        <!-- Mast Frames me Photos -->
-        <div class="love-frames-grid">
-            <div class="pookie-frame frame-left">
-                <img src="assets/photo1.jpg" alt="Memory 1">
-                <span class="ribbon">🎀</span>
+        <!-- SECTION 1: HANGING POLAROIDS (Reel Image 1) -->
+        <div class="hanging-section">
+            <div class="string-line"></div>
+            <div class="polaroid-string">
+                <div class="hanging-polaroid p-rot-left">
+                    <div class="clip">📌</div>
+                    <img src="assets/photo1.jpg" alt="Memory 1">
+                </div>
+                <div class="hanging-polaroid p-rot-right">
+                    <div class="clip">📌</div>
+                    <img src="assets/photo2.jpg" alt="Memory 2">
+                </div>
+                <div class="hanging-polaroid p-rot-straight">
+                    <div class="clip">📌</div>
+                    <img src="assets/photo3.jpg" alt="Memory 3">
+                </div>
             </div>
-            <div class="pookie-frame frame-right">
-                <img src="assets/photo2.jpg" alt="Memory 2">
-                <span class="ribbon">🌸</span>
+            
+            <!-- Cute Aesthetic Cloud Wrapper -->
+            <div class="cloud-bottom">
+                <h2 class="cloud-text">Moments I Cherish With You ✨</h2>
             </div>
         </div>
 
-        <!-- Animated Message Box -->
-        <div class="animated-message-box">
-            <p class="animated-text">
-                Happy Birthday my love! 🎂<br><br>
-                Aap meri life ke sabse pyaare pookie ho! Jabse aap aaye ho, sab kuch kitna khoobsurat ho gaya hai. 🧸✨<br><br>
-                Main hamesha aapko aise hi pareshan karta rahunga aur dher saara pyaar karta rahunga! ❤️
-            </p>
+        <!-- SECTION 2: VINTAGE TYPING MESSAGE & CAMERA FRAME (Reel Image 2) -->
+        <div class="message-section-wrapper">
+            <div class="scallop-card">
+                <h2 class="love-title">To the love of my life... 💕</h2>
+                <div class="typing-container">
+                    <p class="typing-text">To the person who has stolen my heart (and never returned it 🫣). Happy birthday baby!! There are no amount of words that can tell you how I feel, no amount of time is ever enough with you. You feel like home 🏠 You make my world feel softer, safer, real...</p>
+                </div>
+            </div>
+
+            <!-- Side Camera / Phone Frame Box -->
+            <div class="camera-frame-box">
+                <div class="camera-screen">
+                    <img src="assets/photo4.jpg" alt="Special Someone">
+                </div>
+                <div class="camera-buttons">
+                    <span>⚪</span><span>🔘</span><span>⚪</span>
+                </div>
+            </div>
         </div>
     </div>
 
