@@ -1,74 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta name="theme-color" content="#ff71ad">
+
+  <meta
+    name="description"
+    content="A little corner of the internet, made for a very special birthday girl."
+  >
+
+  <title>For you, birthday girl ♡</title>
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ff71ad'/%3E%3Cpath d='M32 48 13 30C1 17 21 5 32 20 43 5 63 17 51 30Z' fill='%23251c24'/%3E%3C/svg%3E"
+  >
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
+
 <body>
-    <audio id="bg-music" loop>
-        <source src="assets/music.mp3" type="audio/mpeg">
-    </audio>
+  <a class="skip-link" href="#main">
+    Skip to birthday wishes
+  </a>
 
-    <div class="hearts-bg">
-        <div class="heart" style="--left: 10%; --delay: 0s; --size: 30px;">❤️</div>
-        <div class="heart" style="--left: 30%; --delay: 2s; --size: 24px;">🎀</div>
-        <div class="heart" style="--left: 50%; --delay: 4s; --size: 35px;">💕</div>
-        <div class="heart" style="--left: 70%; --delay: 1s; --size: 26px;">🧸</div>
-        <div class="heart" style="--left: 85%; --delay: 5s; --size: 20px;">💖</div>
-    </div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
 
-    <!-- SECTION 1: PASSCODE LOCK SCREEN -->
-    <div id="lock-screen" class="screen">
-        <div class="lock-container">
-            <div class="image-frame">
-                <img src="assets/penguin.jpg" alt="Cute Penguin" id="profile-pic">
+  <header class="topbar wrap">
+    <a
+      class="wordmark"
+      href="#main"
+      aria-label="For you, home"
+    >
+      for you<span aria-hidden="true">✳</span>
+    </a>
+
+    <nav aria-label="Birthday sections">
+      <a href="#little-things">little things</a>
+      <a href="#wish">your wish</a>
+    </nav>
+
+    <button
+      class="music-button"
+      id="music-button"
+      type="button"
+      aria-pressed="false"
+    >
+      <span aria-hidden="true">♫</span>
+      <span id="music-label">Music off</span>
+    </button>
+  </header>
+
+  <main id="main">
+    <section
+      class="hero wrap"
+      aria-labelledby="birthday-title"
+    >
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span class="mini-star" aria-hidden="true">✦</span>
+          A VERY IMPORTANT HUMAN WAS BORN
+        </p>
+
+        <h1 id="birthday-title">
+          Happy<br>
+          <em>birthday,</em><br>
+          <span class="friend-name">Bestie</span><span class="name-dot">.</span>
+        </h1>
+
+        <p
+          class="hero-description"
+          id="hero-description"
+        >
+          A little extra love, a little extra chaos, and a whole
+          page just for you. Because a basic birthday text?
+          Couldn't be me.
+        </p>
+
+        <button
+          class="button button-dark"
+          id="open-letter"
+          type="button"
+        >
+          I made you something
+          <span aria-hidden="true">↗</span>
+        </button>
+
+        <p class="handwritten hero-footnote">
+          yes, this entire page is your birthday card ♡
+        </p>
+      </div>
+
+      <div class="hero-scrapbook">
+        <span class="scrapbook-label">
+          THE BIRTHDAY EDITION
+        </span>
+
+        <div class="hero-polaroid">
+          <div class="cover-space" id="cover-space">
+            <div
+              class="cover-lettering"
+              id="cover-fallback"
+            >
+              <span class="cover-top">
+                100% ORIGINAL. ZERO DUPLICATES.
+              </span>
+
+              <span
+                class="cover-sparkle"
+                aria-hidden="true"
+              >
+                ✳
+              </span>
+
+              <p>
+                one<br>
+                of a<br>
+                <em>kind.</em>
+              </p>
+
+              <span class="cover-bottom">
+                THE WORLD GOT LUCKY WITH YOU.
+              </span>
             </div>
-            <h2>Enter a passcode</h2>
-            <div class="passcode-display">
-                <span class="dot" id="dot-1"></span>
-                <span class="dot" id="dot-2"></span>
-                <span class="dot" id="dot-3"></span>
-                <span class="dot" id="dot-4"></span>
-            </div>
-            <div class="keypad">
-                <button class="key" onclick="pressKey('1')">1</button>
-                <button class="key" onclick="pressKey('2')">2</button>
-                <button class="key" onclick="pressKey('3')">3</button>
-                <button class="key" onclick="pressKey('4')">4</button>
-                <button class="key" onclick="pressKey('5')">5</button>
-                <button class="key" onclick="pressKey('6')">6</button>
-                <button class="key" onclick="pressKey('7')">7</button>
-                <button class="key" onclick="pressKey('8')">8</button>
-                <button class="key" onclick="pressKey('9')">9</button>
-                <button class="key" onclick="clearPasscode()">*</button>
-                <button class="key" onclick="pressKey('0')">0</button>
-                <button class="key" onclick="clearPasscode()">#</button>
-            </div>
-            <p id="error-message" style="color: #ffb3b3; display: none; margin-top: 15px;">Wrong Passcode! Try again.</p>
+          </div>
+
+          <p class="handwritten">
+            the main character, obviously.
+          </p>
         </div>
+
+        <span class="sticker sticker-pink">
+          birthday<br>
+          girl energy
+        </span>
+
+        <span
+          class="sticker sticker-white"
+          aria-hidden="true"
+        >
+          10/10<br>
+          would befriend<br>
+          again
+        </span>
+
+        <span
+          class="scrapbook-star"
+          aria-hidden="true"
+        >
+          ✷
+        </span>
+      </div>
+    </section>
+
+    <div
+      class="ribbon"
+      aria-label="More laughs, more adventures, more you"
+    >
+      <div>
+        MORE LAUGHS <span>✳</span>
+        MORE ADVENTURES <span>✳</span>
+        MORE YOU <span>✳</span>
+        BESTIE SUPREMACY <span>✳</span>
+        MORE LAUGHS <span>✳</span>
+        MORE ADVENTURES
+      </div>
     </div>
 
-    <!-- SECTION 2: GIFTS SCREEN -->
-    <div id="main-content" class="screen hidden">
-        <div class="gifts-container">
-            <h1 class="title-text">CLICK ON GIFTS TO OPEN 🎀</h1>
-            <div class="gifts-row">
-                <!-- Ab ye seedha naye page par bhejenge -->
-                <div class="gift-box" onclick="location.href='gift1.html'">
-                    <img src="assets/gift.png" alt="Gift 1">
-                </div>
-                <div class="gift-box" onclick="location.href='gift2.html'">
-                    <img src="assets/gift.png" alt="Gift 2">
-                </div>
-                <div class="gift-box" onclick="location.href='gift3.html'">
-                    <img src="assets/gift.png" alt="Gift 3">
-                </div>
-            </div>
+    <section
+      class="little-things wrap section-space"
+      id="little-things"
+      aria-labelledby="little-title"
+    >
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">
+            01 / THE LITTLE THINGS
+          </p>
+
+          <h2 id="little-title">
+            Life is better<br>
+            with <em>your kind of weird.</em>
+          </h2>
         </div>
-    </div>
 
-    <script src="script.js"></script>
+        <p class="section-aside">
+          Here's to the laughs, the random talks,<br>
+          and all the memories still to come.
+        </p>
+      </div>
+
+      <div class="memory-grid" id="memory-grid">
+        <figure class="memory-card" data-memory="0">
+          <div class="memory-visual memory-pink">
+            <div class="memory-fallback">
+              <span aria-hidden="true">♡</span>
+
+              <p>
+                small moments.<br>
+                big feelings.
+              </p>
+
+              <small>THE GOOD STUFF</small>
+            </div>
+          </div>
+
+          <figcaption>
+            <span class="memory-caption">
+              The little things that mean a lot.
+            </span>
+
+            <span class="memory-number">01</span>
+          </figcaption>
+        </figure>
+
+        <figure class="memory-card" data-memory="1">
+          <div class="memory-visual memory-lime">
+            <div class="memory-fallback">
+              <span aria-hidden="true">✳</span>
+
+              <p>
+                our kind<br>
+                of chaos.
+              </p>
+
+              <small>NO BORING MOMENTS</small>
+            </div>
+          </div>
+
+          <figcaption>
+            <span class="memory-caption">
+              A little laughter goes a long way.
+            </span>
+
+            <span class="memory-number">02</span>
+          </figcaption>
+        </figure>
+
+        <figure class="memory-card" data-memory="2">
+          <div class="memory-visual memory-purple">
+            <div class="memory-fallback">
+              <span aria-hidden="true">✧</span>
+
+              <p>
+                more memories,<br>
+                please.
+              </p>
+
+              <small>TO BE CONTINUED</small>
+            </div>
+          </div>
+
+          <figcaption>
+            <span class="memory-caption">
+              So many good days are still ahead.
+            </span>
+
+            <span class="memory-number">03</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section
+      class="reminder-section"
+      aria-labelledby="reminder-title"
+    >
+      <div class="reminder-inner wrap">
+        <div>
+          <p class="eyebrow">
+            02 / IN CASE YOU FORGOT
+          </p>
+
+          <h2 id="reminder-title">
+            A tiny reminder.<br>
+            <em>A big deal.</em>
+          </h2>
+
+          <p>
+            For today. For a random Tuesday.<br>
+            For whenever you need to hear it.
+          </p>
+        </div>
+
+        <div class="reminder-note">
+          <span class="note-label">
+            A NOTE FOR YOU ♡
+          </span>
+
+          <p
+            id="reminder-text"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            You make ordinary days feel like the good part
+            of a movie.
+          </p>
+
+          <button
+            class="button button-outline"
+            id="next-reminder"
+            type="button"
+          >
+            Another little reminder
+            <span aria-hidden="true">↻</span>
+          </button>
+
+          <span class="note-count" id="note-count">
+            01 / 06
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="wish-section wrap section-space"
+      id="wish"
+      aria-labelledby="wish-title"
+    >
+      <p class="eyebrow">
+        03 / A LITTLE BIRTHDAY MAGIC
+      </p>
+
+      <h2 id="wish-title">
+        Okay, birthday girl.<br>
+        <em>Make a wish.</em>
+      </h2>
+
+      <p>
+        Close your eyes for a second.<br>
+        Think of something that would make you really,
+        really happy.
+      </p>
+
+      <span
+        class="cake-emoji"
+        id="cake-emoji"
+        aria-hidden="true"
+      >
+        🎂
+      </span>
+
+      <button
+        class="button button-pink"
+        id="wish-button"
+        type="button"
+      >
+        I've made my wish
+        <span aria-hidden="true">✦</span>
+      </button>
+
+      <p
+        class="wish-response"
+        id="wish-response"
+        role="status"
+      >
+        Your wish stays between you and the universe.
+      </p>
+
+      <p class="handwritten wish-signoff">
+        here's to a year that feels like you ♡
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p>Made with a little code & a lot of love.</p>
+
+    <p>
+      From <span class="sender-name">Your friend</span>,
+      with ♡
+    </p>
+
+    <a href="#main">Back to your day ↑</a>
+  </footer>
+
+  <dialog
+    class="letter-dialog"
+    id="letter-dialog"
+    aria-labelledby="letter-title"
+  >
+    <button
+      class="close-button"
+      id="close-letter"
+      type="button"
+      aria-label="Close birthday letter"
+    >
+      ×
+    </button>
+
+    <div class="letter-content">
+      <p class="eyebrow">JUST BETWEEN US</p>
+
+      <h2 id="letter-title">
+        Hey,
+        <span class="friend-name">Bestie</span>
+        <span aria-hidden="true">♡</span>
+      </h2>
+
+      <div id="letter-body">
+        <p>
+          Happy birthday! I hope this year brings you a
+          hundred new reasons to smile. Thank you for being you.
+        </p>
+      </div>
+
+      <p class="letter-signature handwritten">
+        Always cheering for you,<br>
+        <span class="sender-name">Your friend</span> ♡
+      </p>
+
+      <button
+        class="button button-dark"
+        id="letter-done"
+        type="button"
+      >
+        Keeping this forever ♡
+      </button>
+    </div>
+  </dialog>
+
+  <dialog
+    class="photo-dialog"
+    id="photo-dialog"
+    aria-labelledby="photo-caption"
+  >
+    <button
+      class="close-button"
+      id="close-photo"
+      type="button"
+      aria-label="Close photo"
+    >
+      ×
+    </button>
+
+    <img id="enlarged-photo" alt="" hidden>
+
+    <p id="photo-caption"></p>
+  </dialog>
+
+  <p class="toast" id="toast" role="status" hidden></p>
+
+  <noscript>
+    <p class="noscript-note">
+      Happy birthday! Enable JavaScript to open the letter,
+      play music and make a wish.
+    </p>
+  </noscript>
 </body>
 </html>
