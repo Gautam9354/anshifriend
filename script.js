@@ -31,7 +31,7 @@ const SETTINGS = {
     memories: [
 
         {
-            image: "images/photo1.jpg",
+            image: "pic8.jpg",
             caption: "main character moment ✨"
         },
 
