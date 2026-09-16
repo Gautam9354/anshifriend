@@ -18,7 +18,7 @@ const SETTINGS = {
     "A little extra love, a little extra chaos, and a whole page just for you. Because a basic birthday text? Couldn't be me.",
 
   // Main photo ka example: "images/her.jpg"
-  coverPhoto: "",
+  coverPhoto: "pic2.jpg",
 
   // Face crop ho to "center top" kar sakte ho.
   coverPhotoPosition: "center",
