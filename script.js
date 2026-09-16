@@ -41,27 +41,27 @@ const SETTINGS = {
         },
 
         {
-            image: "images/photo3.jpg",
+            image: "pic2.jpg",
             caption: "certified chaos 💀"
         },
 
         {
-            image: "images/photo4.jpg",
+            image: "pic3.jpg",
             caption: "actually kinda cute"
         },
 
         {
-            image: "images/photo5.jpg",
+            image: "pic4.jpg",
             caption: "memory unlocked 💗"
         },
 
         {
-            image: "images/photo6.jpg",
+            image: "pic5.jpg",
             caption: "10/10 moment"
         },
 
         {
-            image: "images/photo7.jpg",
+            image: "pic6.jpg",
             caption: "we don't explain this one 😭"
         },
 
