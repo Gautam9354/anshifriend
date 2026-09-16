@@ -36,7 +36,7 @@ const SETTINGS = {
         },
 
         {
-            image: "images/photo2.jpg",
+            image: "pic9.jpg",
             caption: "this one stays in the lore"
         },
 
@@ -66,7 +66,7 @@ const SETTINGS = {
         },
 
         {
-            image: "images/photo8.jpg",
+            image: "pic11.jpg",
             caption: "core memory."
         }
     ],
