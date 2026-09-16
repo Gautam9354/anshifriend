@@ -1,630 +1,995 @@
-/* BASIC SETUP */
+/* Website ke colors */
+:root {
+  --ink: #261d25;
+  --pink: #ff71ad;
+  --paper: #fff5f7;
+  --lime: #d5f36b;
+  --purple: #b3a1f6;
+  --white: #fffdfc;
+  --line: 2px solid var(--ink);
+}
+
+/* Basic setup */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
 }
 
 body {
-    /* Safe fallback color agar gradient load na ho */
-    background-color: #701023; 
-    
-    /* iOS Safari aur baaki sabhi browsers ke liye full gradient support */
-    background: -webkit-linear-gradient(135deg, #701023 0%, #c4294d 100%);
-    background: linear-gradient(135deg, #701023 0%, #c4294d 100%);
-    
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    /* iPhone par layout fix karne ke liye fixed height aur width */
-    width: 100vw;
-    height: 100vh;
-    height: -webkit-fill-available; /* iPhone specific height fix */
-    
-    overflow: hidden; 
-    position: relative;
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
-/* HTML tag ko bhi background color dena zaroori hai taaki iPhone background white na kare */
-html {
-    background-color: #701023;
-    height: -webkit-fill-available;
-}
-/* FLOATING HEARTS ANIMATION */
-/* FLOATING HEARTS ANIMATION */
-.hearts-bg {
-    position: fixed; /* absolute ki jagah fixed taaki screen ke upar hi rahe */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-   
-    pointer-events: none; /* Isse aap background ke piche ke buttons par click kar paoge */
+body.modal-open {
+  overflow: hidden;
 }
 
-.heart {
-    position: absolute;
-    bottom: -50px; /* Screen ke bilkul niche se start hoga */
-    left: var(--left);
-    font-size: var(--size);
-    animation: floatUp 7s infinite linear;
-    animation-delay: var(--delay);
-    opacity: 0.6;
-    will-change: transform; /* iPhone ke browser ko performance smooth rakhne ke liye bolta hai */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Hearts ko upar udane ka aur responsive rakhne ka jadoo */
-@keyframes floatUp {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(-110vh) scale(1.3); /* vh use kiya taaki har phone screen ke upar tak jaye */
-        opacity: 0;
-    }
-}
-/* COMMON SCREEN STYLES */
-.screen {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 20px;
+button {
+  font: inherit;
+  cursor: pointer;
 }
 
-.hidden {
-    display: none !important;
+a {
+  color: inherit;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
 }
 
-/* -------------------------------------
-   SECTION 1: PASSCODE LOCK SCREEN
---------------------------------------- */
-.lock-container {
-    /* Glassmorphism Effect */
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    
-    padding: 30px 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    width: 100%;
-    max-width: 350px;
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #5940cc;
+  outline-offset: 5px;
 }
 
-/* Heart-shaped Image Frame */
-.image-frame img {
-    width: 140px; 
-    height: 140px;
-    border-radius: 50%; /* Image ko gol banayega */
-    border: 4px solid #ffccdd;
-    margin-bottom: 15px;
-    object-fit: cover;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+::selection {
+  color: var(--ink);
+  background: var(--lime);
+}
+
+.wrap {
+  width: min(1180px, calc(100% - 80px));
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 20px;
+  z-index: 100;
+  background: white;
+  padding: 12px;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Header */
+.topbar {
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  border-bottom: var(--line);
+}
+
+.wordmark {
+  margin-right: auto;
+  font-weight: 900;
+  font-size: 1.9rem;
+  letter-spacing: -0.09em;
+  text-decoration: none;
+}
+
+.wordmark span {
+  color: #b32061;
+  margin-left: 0.25em;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 26px;
+  font-size: 0.9rem;
+}
+
+.topbar nav a {
+  text-decoration: none;
+}
+
+.topbar nav a:hover {
+  text-decoration: underline;
+}
+
+.music-button {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--ink);
+  border-radius: 40px;
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.music-button[aria-pressed="true"] {
+  background: var(--lime);
+}
+
+/* Main birthday section */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding-block: 72px 92px;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  line-height: 1.7;
+}
+
+.mini-star {
+  font-size: 1.2rem;
+  margin-right: 8px;
+  color: #b32061;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(3.8rem, 6.8vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  line-height: 1.04;
+  margin-bottom: 25px;
+  overflow-wrap: anywhere;
+}
+
+h1 em,
+h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+}
+
+h1 em {
+  color: #ac235c;
+}
+
+.name-dot {
+  color: #ac235c;
+}
+
+.hero-description {
+  max-width: 405px;
+  margin-bottom: 27px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* Buttons */
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  max-width: 100%;
+  min-height: 54px;
+  padding: 13px 23px;
+  border: var(--line);
+  border-radius: 7px;
+  font-weight: 700;
+  line-height: 1.5;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.button-dark {
+  background: var(--ink);
+  color: var(--white);
+  box-shadow: 4px 4px 0 var(--pink);
+}
+
+.button-dark:hover {
+  box-shadow: 6px 6px 0 var(--pink);
+}
+
+.button-pink {
+  background: var(--pink);
+  color: var(--ink);
+}
+
+.button-outline {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.handwritten {
+  font-family:
+    "Comic Sans MS",
+    "Segoe Print",
+    "Bradley Hand",
+    cursive;
+}
+
+.hero-footnote {
+  font-size: 0.9rem;
+  margin: 22px 0 0;
+  transform: rotate(-2deg);
+}
+
+/* Scrapbook photo */
+.hero-scrapbook {
+  position: relative;
+  min-width: 0;
+  padding: 35px 40px 28px;
+  background-image:
+    linear-gradient(#261d2510 1px, transparent 1px),
+    linear-gradient(90deg, #261d2510 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.scrapbook-label {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  margin-bottom: 20px;
+}
+
+.hero-polaroid {
+  padding: 14px 14px 3px;
+  background: var(--white);
+  border: var(--line);
+  box-shadow: 8px 8px 0 #261d251a;
+  transform: rotate(-5deg);
+}
+
+.hero-polaroid > p {
+  margin: 14px 0 12px;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+.cover-space {
+  aspect-ratio: 4 / 4.5;
+  position: relative;
+  overflow: hidden;
+  background: var(--lime);
+}
+
+.cover-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-lettering {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  position: relative;
+}
+
+.cover-top,
+.cover-bottom {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.cover-bottom {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.cover-lettering p {
+  font-size: clamp(3.4rem, 5.4vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  line-height: 1.06;
+  margin: auto 0;
+}
+
+.cover-lettering p em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+
+.cover-sparkle {
+  position: absolute;
+  right: 18px;
+  top: 34%;
+  font-size: 5.5rem;
+  line-height: 1;
+}
+
+.sticker {
+  position: absolute;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.15;
+  border: var(--line);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.sticker-pink {
+  background: var(--pink);
+  right: 0;
+  top: 21%;
+  padding: 18px 20px;
+  font-size: 1.2rem;
+  transform: rotate(12deg);
+}
+
+.sticker-white {
+  background: var(--white);
+  left: -6px;
+  bottom: 20px;
+  padding: 20px;
+  font-size: 0.85rem;
+  border-radius: 50%;
+  transform: rotate(-13deg);
+}
+
+.scrapbook-star {
+  position: absolute;
+  right: 3px;
+  bottom: -10px;
+  font-size: 5.4rem;
+  line-height: 1;
+  color: #ac235c;
+}
+
+/* Pink strip */
+.ribbon {
+  overflow: hidden;
+  border-block: var(--line);
+  background: var(--pink);
+  padding: 17px 0;
+}
+
+.ribbon > div {
+  width: max-content;
+  font-weight: 900;
+  font-size: 1.05rem;
+  word-spacing: 0.12em;
+}
+
+.ribbon span {
+  padding: 0 30px;
+}
+
+/* Section headings */
+.section-space {
+  padding-block: 90px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 28px;
+  margin-bottom: 44px;
 }
 
 h2 {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    font-weight: normal;
-    letter-spacing: 1px;
+  font-size: clamp(2.3rem, 4.2vw, 3.7rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 1.15;
+  margin-bottom: 20px;
 }
 
-.passcode-display {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 25px;
+.section-heading h2 {
+  margin-bottom: 0;
 }
 
-.dot {
-    width: 16px;
-    height: 16px;
-    border: 2px solid white;
-    border-radius: 50%;
-    display: inline-block;
-    transition: 0.2s;
+.section-aside {
+  font-size: 0.9rem;
+  text-align: right;
+  margin-bottom: 6px;
 }
 
-.dot.active {
-    background-color: white;
-    transform: scale(1.2);
-    box-shadow: 0 0 10px white;
+/* Memories */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  padding: 10px 6px;
 }
 
-.keypad {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    max-width: 260px; 
-    margin: 0 auto;
+.memory-card {
+  min-width: 0;
+  margin: 0;
+  padding: 12px 12px 0;
+  border: var(--line);
+  background: var(--white);
+  box-shadow: 5px 5px 0 #261d2519;
+  transform: rotate(-2deg);
 }
 
-.key {
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    color: white;
-    font-size: 1.4rem;
-    width: 65px; 
-    height: 65px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.2s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+.memory-card:nth-child(2) {
+  transform: rotate(3deg);
+  margin-top: 14px;
 }
 
-.key:hover, .key:active {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: white;
-    transform: scale(0.95);
+.memory-card:nth-child(3) {
+  transform: rotate(-1deg);
 }
 
-/* -------------------------------------
-   SECTION 2: GIFTS & POPUPS
---------------------------------------- */
-.gifts-container {
-    width: 100%;
-    max-width: 500px;
+.memory-visual {
+  aspect-ratio: 1 / 1.05;
+  position: relative;
+  overflow: hidden;
 }
 
-.title-text {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+.memory-pink {
+  background: #ffabd0;
 }
 
-.gifts-row {
-    display: flex;
-    justify-content: center;
+.memory-lime {
+  background: var(--lime);
+}
+
+.memory-purple {
+  background: var(--purple);
+}
+
+.memory-fallback {
+  padding: 24px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.memory-fallback > span {
+  font-family: Georgia, serif;
+  font-size: 3.9rem;
+  line-height: 1;
+}
+
+.memory-fallback p {
+  font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 1.2;
+  margin: 15px 0;
+}
+
+.memory-fallback small {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+.memory-photo-button {
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.memory-photo-button:focus-visible {
+  outline-offset: -6px;
+}
+
+.memory-photo-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.memory-photo-button:hover img {
+  transform: scale(1.035);
+}
+
+.memory-card figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 18px 3px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.memory-number {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* Reminder notes */
+.reminder-section {
+  background: var(--ink);
+  color: var(--white);
+  padding-block: 76px;
+  border-block: var(--line);
+}
+
+.reminder-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.reminder-inner > div > p:last-child {
+  color: #e1cfd9;
+  margin-bottom: 0;
+}
+
+.reminder-inner .eyebrow {
+  color: var(--pink);
+}
+
+.reminder-inner h2 em {
+  color: var(--pink);
+}
+
+.reminder-note {
+  position: relative;
+  background: var(--lime);
+  color: var(--ink);
+  padding: 32px;
+  border: var(--line);
+  transform: rotate(2deg);
+  box-shadow: 7px 7px 0 var(--pink);
+}
+
+.note-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+#reminder-text {
+  font-family: Georgia, serif;
+  font-size: clamp(1.6rem, 2.3vw, 2.1rem);
+  line-height: 1.35;
+  min-height: 5.5em;
+  margin: 24px 0;
+}
+
+.reminder-note .button {
+  font-size: 0.875rem;
+  gap: 15px;
+}
+
+.note-count {
+  display: block;
+  margin-top: 22px;
+  text-align: right;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Birthday wish */
+.wish-section {
+  text-align: center;
+}
+
+.wish-section h2 {
+  margin-bottom: 24px;
+}
+
+.wish-section > p:not(.eyebrow):not(.handwritten) {
+  max-width: 500px;
+  margin-inline: auto;
+}
+
+.cake-emoji {
+  display: block;
+  font-size: 6rem;
+  line-height: 1.3;
+  margin: 22px auto 30px;
+}
+
+.wish-response {
+  font-size: 0.875rem;
+  min-height: 3em;
+  margin-top: 22px;
+}
+
+.wish-signoff {
+  margin: 25px 0 0;
+  font-size: 1.35rem;
+  color: #ac235c;
+  transform: rotate(-3deg);
+}
+
+/* Footer */
+.footer {
+  border-top: var(--line);
+  padding-block: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 18px;
+  font-size: 0.875rem;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* Birthday letter popup */
+.letter-dialog {
+  color: var(--ink);
+  width: min(640px, calc(100% - 28px));
+  max-height: 88vh;
+  max-height: 88dvh;
+  border: var(--line);
+  padding: 0;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 8px 8px 0 var(--pink);
+}
+
+dialog::backdrop {
+  background: #261d25b8;
+  backdrop-filter: blur(5px);
+}
+
+.letter-content {
+  padding: 52px 42px 38px;
+}
+
+.letter-content h2 {
+  overflow-wrap: anywhere;
+}
+
+#letter-body {
+  font-size: 1.025rem;
+  line-height: 1.85;
+}
+
+#letter-body p {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.letter-signature {
+  color: #ac235c;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin: 30px 0;
+}
+
+.close-button {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: var(--line);
+  border-radius: 50%;
+  background: var(--pink);
+  color: var(--ink);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+/* Full photo popup */
+.photo-dialog {
+  position: fixed;
+  width: min(850px, calc(100% - 28px));
+  max-height: 92vh;
+  max-height: 92dvh;
+  border: var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--white);
+  color: var(--ink);
+}
+
+.photo-dialog img {
+  width: 100%;
+  max-height: 73vh;
+  max-height: 73dvh;
+  object-fit: contain;
+  background: var(--paper);
+}
+
+.photo-dialog p {
+  margin: 14px 6px 4px;
+}
+
+/* Confetti and status messages */
+#confetti {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  margin: 0;
+  padding: 12px 18px;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  border: var(--line);
+  border-radius: 7px;
+  box-shadow: 3px 3px 0 var(--ink);
+  background: var(--lime);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.noscript-note {
+  padding: 20px;
+  background: var(--lime);
+  text-align: center;
+}
+
+/* Tablet */
+@media (max-width: 950px) {
+  .wrap {
+    width: calc(100% - 48px);
+  }
+
+  .hero {
     gap: 20px;
-}
+    padding-block: 55px 70px;
+  }
 
-.gift-box {
-    cursor: pointer;
-    transition: 0.3s;
-}
+  .hero-scrapbook {
+    padding-inline: 24px;
+  }
 
-.gift-box img {
-    width: 80px;
-    height: auto;
-    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.4));
-    transition: 0.3s;
-}
+  .cover-lettering {
+    padding: 18px;
+  }
 
-.gift-box:hover img {
-    transform: translateY(-10px) scale(1.1);
-}
-
-/* Polaroid Popup Style */
-.popup-content {
-    background: white;
-    color: black;
-    padding: 20px;
-    padding-top: 40px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 350px;
-    position: relative;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    transform: rotate(-2deg); /* Polaroid ko thoda teda karne ke liye */
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #c4294d;
-    cursor: pointer;
-}
-
-#popup-message {
-    font-size: 1.2rem;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    color: #333;
-}
-
-/* MOBILE RESPONSIVENESS */
-@media (max-width: 360px) {
-    .lock-container { padding: 20px 15px; }
-    .image-frame img { width: 110px; height: 110px; }
-    .key { width: 55px; height: 55px; font-size: 1.2rem; }
-    .gifts-row { flex-wrap: wrap; gap: 15px; }
-    .gift-box img { width: 70px; }
-}
-/* UPGRADED LOVE TEMPLATE BOX */
-.love-template-box {
-    background: rgba(255, 240, 243, 0.95); /* Creamy white/pinkish background */
-    color: #4a0e17; /* Dark maroon text for readability */
-    padding: 25px 15px;
-    border-radius: 25px;
-    width: 92%;
-    max-width: 400px;
-    height: 80vh; /* Phone ki screen ke hisaab se 80% height */
-    overflow-y: auto; /* Agar content zyada ho toh scroll ho jaye */
-    position: relative;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-    border: 3px solid #ffccd5;
-}
-
-.close-btn {
-    position: sticky; /* Taaki scroll karne par bhi close button upar hi rahe */
-    top: 0;
-    float: right;
-    background: #c4294d;
-    border: none;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    z-index: 100;
-}
-
-#popup-header-title h3 {
-    font-size: 1.6rem;
-    color: #c4294d;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-family: 'Georgia', serif;
-}
-
-/* MEMORIES GALLERY (POLAROID GRID) */
-.memories-gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns me photos dikhengi */
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.polaroid {
-    background: white;
-    padding: 8px;
-    padding-bottom: 15px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-    border-radius: 4px;
-    transform: rotate(calc(var(--r, 0deg))); /* Thoda random rotation effect */
-}
-
-/* Photos ko realistic look dene ke liye thoda tede-mede angles */
-.polaroid:nth-child(odd) { --r: -3deg; }
-.polaroid:nth-child(even) { --r: 3deg; }
-
-.polaroid img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border: 1px solid #ddd;
-}
-
-.caption {
+  .cover-top,
+  .cover-bottom {
     font-size: 0.75rem;
-    text-align: center;
-    margin-top: 8px;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    color: #555;
+    line-height: 1.4;
+  }
+
+  .cover-lettering p {
+    font-size: 3.6rem;
+  }
+
+  .cover-sparkle {
+    font-size: 4rem;
+    right: 10px;
+  }
+
+  .sticker-pink {
+    font-size: 1rem;
+    padding: 13px;
+    right: -5px;
+  }
+
+  .section-aside {
+    max-width: 230px;
+  }
+
+  .memory-grid {
+    gap: 20px;
+  }
+
+  .memory-fallback {
+    padding: 18px 10px;
+  }
+
+  .memory-fallback > span {
+    font-size: 3rem;
+  }
+
+  .reminder-inner {
+    gap: 40px;
+  }
+
+  .reminder-note {
+    padding: 26px;
+  }
 }
 
-/* LOVE LETTER TEXT SECTION */
-.love-letter {
-    background: #fff5f6;
-    padding: 15px;
-    border-radius: 15px;
-    border-left: 4px solid #c4294d;
-    text-align: left;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    font-family: 'Georgia', serif;
-}
-/* -------------------------------------
-   FULL LOVE TEMPLATE PAGE STYLES
---------------------------------------- */
-.love-page {
-    background: linear-gradient(135deg, #ffeef2 0%, #ffccd5 100%) !important;
-    color: #4a0e17 !important;
-    overflow-y: auto !important; /* Scroll allowed on full page */
-}
+/* Mobile */
+@media (max-width: 700px) {
+  .wrap {
+    width: calc(100% - 40px);
+  }
 
-.full-template-container {
+  .topbar {
+    min-height: 80px;
+    gap: 12px;
+  }
+
+  .topbar nav {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 44px;
+    padding-block: 42px 58px;
+  }
+
+  h1 {
+    font-size: clamp(3.5rem, 13.2vw, 5.7rem);
+  }
+
+  .hero-copy {
+    max-width: 520px;
+  }
+
+  .hero-description {
+    max-width: 430px;
+  }
+
+  .hero-scrapbook {
     width: 100%;
     max-width: 450px;
-    padding: 30px 20px;
-    margin: 0 auto;
-    text-align: center;
-}
+    justify-self: center;
+    padding-inline: 38px;
+  }
 
-.back-btn {
-    background: #c4294d;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    float: left;
-    margin-bottom: 20px;
-}
+  .cover-lettering {
+    padding: 22px;
+  }
 
-.love-heading {
-    font-family: 'Georgia', serif;
-    font-size: 1.8rem;
-    color: #c4294d;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
+  .cover-lettering p {
+    font-size: clamp(3.5rem, 16vw, 5rem);
+  }
 
-/* POOKIE FRAMES */
-.love-frames-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
-    margin-bottom: 40px;
-    align-items: center;
-}
+  .cover-sparkle {
+    font-size: 5rem;
+  }
 
-.pookie-frame {
-    background: white;
-    padding: 12px;
-    padding-bottom: 25px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(196, 41, 77, 0.2);
-    width: 85%;
-    position: relative;
-    border: 2px dashed #ff85a2;
-}
-
-/* Tede-mede frames look */
-.frame-left { transform: rotate(-4deg); }
-.frame-right { transform: rotate(4deg); }
-
-.pookie-frame img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* Cute Pookie Ribbon */
-.ribbon {
-    position: absolute;
-    top: -15px;
-    left: 45%;
-    font-size: 24px;
-}
-
-/* ANIMATED MESSAGE BOX */
-.animated-message-box {
-    background: white;
-    padding: 20px;
-    border-radius: 20px;
-    border: 2px solid #ffccd5;
-    text-align: left;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    
-    /* Animation implementation */
-    animation: slideUpFade 1.5s ease-out forwards;
-    opacity: 0;
-}
-
-.animated-text {
-    font-family: 'Georgia', serif;
+  .sticker-pink {
+    right: 0;
+    padding: 16px;
     font-size: 1.1rem;
-    line-height: 1.6;
-    color: #5c1825;
-}
+  }
 
-/* MSG SLIDE UP ANIMATION */
-@keyframes slideUpFade {
-    0% {
-        transform: translateY(40px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-/* -------------------------------------
-   AESTHETIC SCRAPBOOK & VINTAGE DESIGN (MOBILE OPTIMIZED)
---------------------------------------- */
-.aesthetic-page {
-    background: #a22c38 !important; 
-    color: white !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    width: 100%;
-    -webkit-text-size-adjust: 100%;
-}
-
-.scrapbook-container {
-    width: 100%;
-    max-width: 420px; /* Mobile layout standard width */
-    margin: 0 auto;
-    padding: 15px 10px 40px 10px;
-    box-sizing: border-box;
-}
-
-.back-btn {
-    background: #4a0e17;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 15px;
-    font-size: 0.85rem;
-}
-
-/* SECTION 1: HANGING POLAROIDS */
-.hanging-section {
-    position: relative;
-    padding-top: 25px;
-    margin-bottom: 30px;
-    width: 100%;
-}
-
-.string-line {
-    width: 100%;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.4);
-    position: absolute;
-    top: 20px;
+  .sticker-white {
     left: 0;
-}
+    font-size: 0.78rem;
+    padding: 16px;
+  }
 
-.polaroid-string {
-    display: flex;
-    justify-content: space-evenly; /* Teeno photos screen me evenly distribute hongi */
-    align-items: center;
-    width: 100%;
-    gap: 5px;
-    padding: 10px 0;
-}
+  .section-space {
+    padding-block: 62px;
+  }
 
-.hanging-polaroid {
-    background: white;
-    padding: 5px 5px 12px 5px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    width: 30%; /* Automatic response based on mobile width */
-    max-width: 110px;
-    flex-shrink: 0;
-    position: relative;
-}
-
-.hanging-polaroid img {
-    width: 100%;
-    height: 75px; /* Mobile friendly square look */
-    object-fit: cover;
-}
-
-.clip {
-    position: absolute;
-    top: -12px;
-    left: 38%;
-    font-size: 12px;
-    z-index: 5;
-}
-
-.p-rot-left { transform: rotate(-4deg); }
-.p-rot-right { transform: rotate(5deg); }
-.p-rot-straight { transform: rotate(-1deg); }
-
-/* Cloud Effect */
-.cloud-bottom {
-    background: #fff;
-    color: #4a0e17;
-    border-radius: 30px 30px 15px 15px;
-    padding: 15px 10px;
-    margin-top: 15px;
-    box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
-}
-
-.cloud-text {
-    font-family: 'Georgia', serif;
-    font-size: 1.1rem;
-    font-style: italic;
-    text-align: center;
-}
-
-/* SECTION 2: MESSAGES & CAMERA */
-.message-section-wrapper {
-    display: flex;
+  .section-heading {
+    align-items: start;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
+  }
+
+  .section-aside {
+    text-align: left;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .memory-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 410px;
+    margin: 0 auto;
+    padding-inline: 10px;
+  }
+
+  .memory-card:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .memory-fallback p {
+    font-size: 2.2rem;
+  }
+
+  .memory-fallback > span {
+    font-size: 4rem;
+  }
+
+  .reminder-section {
+    padding-block: 55px;
+  }
+
+  .reminder-inner {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .reminder-note {
+    margin: 0 9px 7px 4px;
+  }
+
+  #reminder-text {
+    min-height: 5.4em;
+  }
+
+  .footer {
+    flex-direction: column;
     align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.scallop-card {
-    background: #fffdf2; 
-    color: #2b050a;
-    padding: 15px;
-    border-radius: 15px;
-    width: 100%;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    border: 3px dashed #e6dcb8; 
-    box-sizing: border-box;
-}
-
-.love-title {
-    font-family: 'Georgia', serif;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #a22c38;
-}
-
-.typing-container {
-    width: 100%;
-}
-
-.typing-text {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    word-wrap: break-word; /* Force text to stay in bounds */
-}
-
-/* CAMERA FRAME */
-.camera-frame-box {
-    background: #4a0e17; 
-    padding: 10px;
-    border-radius: 12px;
-    width: 150px; /* Reduced for small displays */
-    border: 3px solid #fff;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-}
-
-.camera-screen {
-    background: #000;
-    border-radius: 6px;
-    overflow: hidden;
-    height: 180px;
-}
-
-.camera-screen img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.camera-buttons {
-    display: flex;
-    justify-content: center;
+    text-align: center;
     gap: 10px;
-    margin-top: 6px;
-    font-size: 8px;
-    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .letter-content {
+    padding: 62px 24px 30px;
+  }
 }
 
-/* EXTRA SMALL SCREEN FIX (iPhones smaller than iPhone 11) */
-@media (max-width: 360px) {
-    .hanging-polaroid img { height: 60px; }
-    .cloud-text { font-size: 0.95rem; }
-    .love-title { font-size: 1.1rem; }
-    .typing-text { font-size: 0.85rem; }
-    .camera-frame-box { width: 130px; }
-    .camera-screen { height: 150px; }
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
