@@ -364,60 +364,222 @@ function createReminders() {
    MUSIC
 ========================================================= */
 
+/* =========================================================
+   HAPPY BIRTHDAY TUNE - NO MP3 REQUIRED
+========================================================= */
+
+let audioContext;
+let birthdayPlaying = false;
+let activeOscillators = [];
+
+const birthdayTune = [
+    // Happy birthday to you
+    ["G4", 0.30],
+    ["G4", 0.18],
+    ["A4", 0.48],
+    ["G4", 0.48],
+    ["C5", 0.48],
+    ["B4", 0.75],
+
+    // Happy birthday to you
+    ["G4", 0.30],
+    ["G4", 0.18],
+    ["A4", 0.48],
+    ["G4", 0.48],
+    ["D5", 0.48],
+    ["C5", 0.75],
+
+    // Happy birthday dear...
+    ["G4", 0.30],
+    ["G4", 0.18],
+    ["G5", 0.48],
+    ["E5", 0.48],
+    ["C5", 0.48],
+    ["B4", 0.48],
+    ["A4", 0.75],
+
+    // Happy birthday to you
+    ["F5", 0.30],
+    ["F5", 0.18],
+    ["E5", 0.48],
+    ["C5", 0.48],
+    ["D5", 0.48],
+    ["C5", 0.85]
+];
+
+
+const noteFrequencies = {
+    "G4": 392.00,
+    "A4": 440.00,
+    "B4": 493.88,
+    "C5": 523.25,
+    "D5": 587.33,
+    "E5": 659.25,
+    "F5": 698.46,
+    "G5": 783.99
+};
+
+
 function setupMusic() {
 
-    const music =
-        document.getElementById("bgMusic");
-
-    const button =
-        document.getElementById("musicBtn");
-
-    const text =
-        document.getElementById("musicText");
-
-    let playing = false;
-
+    const button = document.getElementById("musicBtn");
+    const text = document.getElementById("musicText");
+    const icon = document.getElementById("musicIcon");
 
     button.addEventListener("click", async () => {
 
-        try {
+        if (birthdayPlaying) {
+            stopBirthdayTune();
 
-            if (!playing) {
+            birthdayPlaying = false;
 
-                await music.play();
+            text.textContent = "music";
+            icon.textContent = "♫";
 
-                playing = true;
+            button.classList.remove("playing");
 
-                button.classList.add("playing");
-
-                text.textContent = "playing";
-
-            }
-
-            else {
-
-                music.pause();
-
-                playing = false;
-
-                button.classList.remove("playing");
-
-                text.textContent = "music";
-
-            }
-
+            return;
         }
 
-        catch (error) {
+        audioContext =
+            audioContext ||
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
 
-            console.log(
-                "Music could not start:",
-                error
-            );
-
+        if (audioContext.state === "suspended") {
+            await audioContext.resume();
         }
+
+        birthdayPlaying = true;
+
+        text.textContent = "playing";
+        icon.textContent = "🎂";
+
+        button.classList.add("playing");
+
+        playBirthdayTune(() => {
+
+            birthdayPlaying = false;
+
+            text.textContent = "music";
+            icon.textContent = "♫";
+
+            button.classList.remove("playing");
+
+        });
 
     });
+
+}
+
+
+function playBirthdayTune(onComplete) {
+
+    let startTime =
+        audioContext.currentTime + 0.1;
+
+    activeOscillators = [];
+
+    birthdayTune.forEach(([note, duration]) => {
+
+        playNote(
+            noteFrequencies[note],
+            startTime,
+            duration
+        );
+
+        startTime += duration + 0.06;
+
+    });
+
+
+    const totalDuration =
+        (startTime - audioContext.currentTime) * 1000;
+
+
+    setTimeout(() => {
+
+        if (birthdayPlaying && onComplete) {
+            onComplete();
+        }
+
+    }, totalDuration);
+
+}
+
+
+function playNote(frequency, startTime, duration) {
+
+    const oscillator =
+        audioContext.createOscillator();
+
+    const gainNode =
+        audioContext.createGain();
+
+
+    oscillator.type = "triangle";
+
+    oscillator.frequency.setValueAtTime(
+        frequency,
+        startTime
+    );
+
+
+    gainNode.gain.setValueAtTime(
+        0,
+        startTime
+    );
+
+    gainNode.gain.linearRampToValueAtTime(
+        0.18,
+        startTime + 0.03
+    );
+
+    gainNode.gain.setValueAtTime(
+        0.18,
+        startTime + duration - 0.08
+    );
+
+    gainNode.gain.linearRampToValueAtTime(
+        0,
+        startTime + duration
+    );
+
+
+    oscillator.connect(gainNode);
+
+    gainNode.connect(
+        audioContext.destination
+    );
+
+
+    oscillator.start(startTime);
+
+    oscillator.stop(
+        startTime + duration
+    );
+
+
+    activeOscillators.push(
+        oscillator
+    );
+
+}
+
+
+function stopBirthdayTune() {
+
+    activeOscillators.forEach(oscillator => {
+
+        try {
+            oscillator.stop();
+        } catch (error) {}
+
+    });
+
+    activeOscillators = [];
 
 }
 
