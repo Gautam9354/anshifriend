@@ -5,7 +5,7 @@
 const SETTINGS = {
 
     // HER NAME
-    friendName: "BESTIE",
+    friendName: "ANSHIIII",
 
     // YOUR NAME
     yourName: "Your Favourite Human",
